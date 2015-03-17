@@ -1,4 +1,8 @@
 /**
+ * Lightbox-mob v2.7.1-0.0.1
+ * modified my Roman Ivanov
+ * 
+ * original script:
  * Lightbox v2.7.1
  * by Lokesh Dhakar - http://lokeshdhakar.com/projects/lightbox2/
  *
@@ -58,7 +62,7 @@
     // Attach event handlers to the new DOM elements. click click click
     Lightbox.prototype.build = function() {
       var self = this;
-      $("<div id='lightboxOverlay' class='lightboxOverlay'></div><div id='lightbox' class='lightbox'><div class='lb-outerContainer'><div class='lb-container'><img class='lb-image' src='' /><div class='lb-nav'><a class='lb-prev' href='' ></a><a class='lb-next' href='' ></a></div><div class='lb-loader'><a class='lb-cancel'></a></div></div></div><div class='lb-dataContainer'><div class='lb-data'><div class='lb-details'><span class='lb-caption'></span><span class='lb-number'></span></div><div class='lb-closeContainer'><a class='lb-close'></a></div></div></div></div>").appendTo($('body'));
+      $("<div id='lightboxOverlay' class='lightboxOverlay'></div><div id='lightbox' class='lightbox'><div class='lb-outerContainer'><div class='lb-container'><img class='lb-image' src='' /><div class='lb-loader'><a class='lb-cancel'></a></div></div></div><div class='lb-dataContainer'><div class='lb-data'><div class='lb-details'><span class='lb-caption'></span></div><div class='lb-closeContainer'><a class='lb-close'></a></div></div></div></div>").appendTo($('body'));
       
       // Cache jQuery objects
       this.$lightbox       = $('#lightbox');
@@ -168,11 +172,32 @@
       }
       
       // Position Lightbox
-      var top  = $window.scrollTop() + this.options.positionFromTop;
-      var left = $window.scrollLeft();
+      var pos_top  = $window.scrollTop() + this.options.positionFromTop;
+      var pos_left = $window.scrollLeft();
+      if (top.document !== document) {
+        var iframe = $('#file_content', parent.document),
+            parent_scrollTop = $(parent.document).scrollTop(),
+            parent_scrollLeft = $(parent.document).scrollLeft(),
+            iframe_offsetTop = 0,
+            iframe_offsetLeft = 0;
+        if (iframe) {
+          iframe_offsetTop = iframe.offset().top;
+          iframe_offsetLeft = iframe.offset().left;
+          if (iframe_offsetTop > parent_scrollTop) {
+            parent_scrollTop = 0;
+            iframe_offsetTop = 0;
+          }
+          if (iframe_offsetLeft > parent_scrollLeft) {
+            parent_scrollLeft = 0;
+            iframe_offsetLeft = 0;
+          }
+        }
+        pos_top += parent_scrollTop - iframe_offsetTop;
+        pos_left += parent_scrollLeft - iframe_offsetLeft;
+      }
       this.$lightbox.css({
-        top: top + 'px',
-        left: left + 'px'
+        top: pos_top + 'px',
+        left: pos_left + 'px'
       }).fadeIn(this.options.fadeDuration);
 
       this.changeImage(imageNumber);

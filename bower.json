@@ -1,11 +1,12 @@
 {
-  "name": "lightbox",
-  "version": "2.7.1",
+  "name": "lightbox-mob",
+  "version": "2.7.1-0.0.1",
   "homepage": "http://lokeshdhakar.com/projects/lightbox2/",
   "authors": [
+    "Roman Ivanov"
     "Lokesh Dhakar <lokesh.dhakar@gmail.com>"
   ],
-  "description": "The original Lightbox script. Uses jQuery.",
+  "description": "Модифицированный lightbox2 для курсов МЭО.",
   "main": "js/lightbox.js",
   "keywords": [
     "lightbox",
