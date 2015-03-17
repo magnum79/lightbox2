@@ -1,3 +1,13 @@
+# Lightbox-mob
+
+v2.7.1-0.0.1 / 16-03-2015
+========================
+
+ * Убрана навигация по наборам изображений
+ * Центрирование внутри фрейма с id="file_content"
+
+--------------------------------------------------
+
 # Lightbox2
 
 The original lightbox script. Eight years later — still going strong!
