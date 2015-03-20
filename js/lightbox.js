@@ -213,7 +213,7 @@
       {
           sameOrigin = false;
       }
-      return (sameOrigin && top.document !== document)
+      return (sameOrigin && top.document !== document);
     }
 
     // Hide most UI elements in preparation for the animated resizing of the lightbox.
@@ -248,7 +248,7 @@
           windowWidth    = $(window).width();
           windowHeight   = $(window).height();
           if (inFrame()) {
-            windowHeight = parent.window.innerHeight
+            windowHeight = parent.window.innerHeight;
           }
           maxImageWidth  = windowWidth - self.containerLeftPadding - self.containerRightPadding - 20;
           maxImageHeight = windowHeight - self.containerTopPadding - self.containerBottomPadding - 120;
