@@ -1,5 +1,5 @@
 /**
- * Lightbox-mob v2.7.1-0.0.1
+ * Lightbox-mob v2.7.1-0.0.2
  * modified my Roman Ivanov
  * 
  * original script:
