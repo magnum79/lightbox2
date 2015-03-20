@@ -174,7 +174,7 @@
       // Position Lightbox
       var pos_top  = $window.scrollTop() + this.options.positionFromTop;
       var pos_left = $window.scrollLeft();
-      if (parentSameOrigin() && top.document !== document) {
+      if (inFrame()) {
         var iframe = $('#file_content', parent.document),
             parent_scrollTop = $(parent.document).scrollTop(),
             parent_scrollLeft = $(parent.document).scrollLeft(),
@@ -203,7 +203,7 @@
       this.changeImage(imageNumber);
     };
 
-    function parentSameOrigin() {
+    function inFrame() {
       var sameOrigin;
       try
       {
@@ -213,7 +213,7 @@
       {
           sameOrigin = false;
       }
-      return sameOrigin;
+      return (sameOrigin && top.document !== document)
     }
 
     // Hide most UI elements in preparation for the animated resizing of the lightbox.
@@ -247,6 +247,9 @@
 
           windowWidth    = $(window).width();
           windowHeight   = $(window).height();
+          if (inFrame()) {
+            windowHeight = parent.window.innerHeight
+          }
           maxImageWidth  = windowWidth - self.containerLeftPadding - self.containerRightPadding - 20;
           maxImageHeight = windowHeight - self.containerTopPadding - self.containerBottomPadding - 120;
 
